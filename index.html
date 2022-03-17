@@ -1,50 +1,26 @@
-<script src='https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js'></script>
 
-<style>
-  .arjs-loader {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+  <body>
+    <a-scene mindar-image="imageTargetSrc: https://github.com/kristabelksm/3DEngineCustomMarker/raw/gh-pages/assets/engine.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-assets>
+	<img id="card" src="https://github.com/kristabelksm/3DEngineCustomMarker/raw/bff230fbb5b29290bd8b4945f09da75f4d16b204/assets/engine.jpg" />
+	<a-asset-item id="avatarModel" src="https://github.com/kristabelksm/3DEngineCustomMarker/blob/gh-pages/assets/engine.gltf"></a-asset-item>
+      </a-assets>
 
-  .arjs-loader div {
-    text-align: center;
-    font-size: 1.25em;
-    color: white;
-  }
-</style>
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-<!-- rawgithack development URL -->
-<script src='https://raw.githack.com/AR-js-org/AR.js/ES6/aframe/build/aframe-ar-nft.js'></script>
-
-<body style='margin : 0px; overflow: hidden;'>
-   <!-- minimal loader shown until image descriptors are loaded -->
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
-    <a-scene
-        vr-mode-ui='enabled: false;'
-        renderer="logarithmicDepthBuffer: true; precision: medium;"
-        embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
-
-        <!-- use rawgithack to retrieve the correct url for nft marker (see 'pinball' below) -->
-        <a-nft
-            type='nft' url='./assets/trex-image/trex'
-            smooth='true' smoothCount='10' smoothTolerance='0.01' smoothThreshold='5'>
-            <a-entity
-                gltf-model='./assets/scene.gltf'
-                scale="5 5 5"
-                position="150 300 -100"
-                >
-            </a-entity>
-        </a-nft>
-		<a-entity camera></a-entity>
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-plane color="blue" opaciy="0.5" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
+        <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel"
+          animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
+        >
+      </a-entity>
     </a-scene>
-</body>
+  </body>
+</html>
